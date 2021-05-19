@@ -18,18 +18,16 @@ namespace SpecFlowCalculator.Hooks
     [Binding]
     public sealed class Hooks1
     {
-
         [BeforeScenario]
-        public void BeforeScenario()
+        public static void BeforeScenario()
         {
-            Calculator.CloseAllInstants();
-            Calculator.GetCalculator();
+            AppCalculator.CloseAllInstants();
         }
 
         [AfterScenario]
-        public void AfterScenario()
+        public static void AfterScenario()
         {
-            Calculator.Close();
+            AppCalculator.Close();
         }
     }
 }

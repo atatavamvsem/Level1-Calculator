@@ -6,49 +6,58 @@ namespace SpecFlowCalculator.Steps
     [Binding]
     public sealed class CalculatorStepDefinitions
     {
-
-        // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
-
-        private readonly ScenarioContext _scenarioContext;
-        private readonly WindowCalculator _calculator = new WindowCalculator();
-        private int _result;
-
-        public CalculatorStepDefinitions(ScenarioContext scenarioContext)
+        [Then("The result is (\\d+)")]
+        public void ThenTheResultIs(int result)
         {
-            _scenarioContext = scenarioContext;
+            WindowCalculator.GetResult().Should().Be(result);
         }
 
-        [When("the two numbers are added")]
-        public void WhenTheTwoNumbersAreAdded()
+        [When(@"I enter number (\d+)")]
+        public void WhenIEnterNumber(int number)
         {
-            _result = _calculator.GetResult();
+            WindowCalculator.ClickNumber(number);
         }
 
-        [Then("the result should be (.*)")]
-        public void ThenTheResultShouldBe(int result)
+
+        [When(@"I sum the number (\d+)")]
+        public void WhenISumTheNumber(int number)
         {
-            _result.Should().Be(result);
+            WindowCalculator.ClickSymbol("Add");
+            WindowCalculator.ClickNumber(number);
+            WindowCalculator.ClickSymbol("Equals");
         }
 
-        [Given(@"click a number (.*)")]
-        public void GivenClickANumber(int number)
+        [When(@"I sum with number in memory")]
+        public void WhenISumWithNumberInMemory()
         {
-            _calculator.ClickNumber(number);
+            WindowCalculator.ClickSymbol("Add");
+            WindowCalculator.ClickSymbol("Memory recall");
+            WindowCalculator.ClickSymbol("Equals");
         }
 
-        [Given(@"click symbol '(.*)'")]
-        public void GivenClickSymbol(string symbol)
+        [When(@"I enter operand (.*)")]
+        public void WhenIEnterOperand(string operand)
         {
-            _calculator.ClickSymbol(symbol);
+            WindowCalculator.ClickSymbol(operand);
         }
 
-        [Given(@"the user inputs number (\d+) and operand '(.*)'")]
-        public void GivenTheUserInputsNumberAndOperand(int number, string operand)
+        [Given(@"I choose the view '(.*)'")]
+        public void GivenIOpenTheCalculator(string view)
         {
-            _calculator.ClickNumber(number);
-            _calculator.ClickSymbol(operand);
+            WindowCalculator.ChooseView(view);
         }
 
+        [Given(@"I open the calculator")]
+        public void GivenIOpenTheCalculator()
+        {
+            AppCalculator.GetCalculator();
+        }
+
+        [Then(@"The calculator is opened")]
+        public void ThenTheCalculatorIsOpened()
+        {
+            AppCalculator.IsOpened().Should().Be(true);
+        }
 
     }
 }

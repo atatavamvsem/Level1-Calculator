@@ -1,17 +1,17 @@
 ﻿Feature: Calculator
-![Calculator](https://specflow.org/wp-content/uploads/2020/09/calculator.png)
-Simple calculator for adding **two** numbers
-
-Link to a feature: [Calculator](SpecFlowCalculator.Specs/Features/Calculator.feature)
-***Further read***: **[Learn more about how to generate Living Documentation](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/LivingDocGenerator/Generating-Documentation.html)**
 
 @mytag
-Scenario: Add two numbers
-	Given the user inputs number 12 and operand 'Add'
-	* the user inputs number 999 and operand 'Equals'
-	* click symbol 'Memory add'
-	* the user inputs number 19 and operand 'Add'
-	* click symbol 'Memory recall'
-	* click symbol 'Equals'
-	When the two numbers are added
-	Then the result should be 1030
+Scenario: Calculator test with various view
+	Given I open the calculator
+	Then The calculator is opened
+	Given I choose the view '<View>'
+	When I enter number 12
+	* I sum the number 999
+	* I enter operand Memory add
+	* I enter number 19
+	* I sum with number in memory
+	Then The result is 1030
+	Examples:
+	| View       |
+	| Standard   |
+	| Scientific |

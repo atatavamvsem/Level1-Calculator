@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Resources;
 using NUnit.Framework;
 using TestStack.White;
 using TestStack.White.Bricks;
@@ -17,28 +19,25 @@ using TestStack.White.WindowsAPI;
 
 namespace SpecFlowCalculator
 {
-    public class Calculator
+    public class AppCalculator
     {
-        private static Application _application;
-        private static Window _window;
+        private static readonly ResourceManager ConfData = Resources.ConfData.ResourceManager;
 
-        public static Calculator GetCalculator()
+        private static Application _application;
+
+        public static void GetCalculator()
         {
-            _application = Application.Launch(@"calc1.exe");
-            _window = _application.GetWindow("Calculator", InitializeOption.NoCache);
-            return new Calculator();
+            _application = Application.Launch(ConfData.GetString("AppName"));
         }
 
         public static void CloseAllInstants()
         {
-            List<Window> lWindows = Desktop.Instance.Windows(); 
-            foreach (Window win in lWindows)
+            IEnumerable<Process> calculatorProcesses = Process.GetProcesses().
+                Where(pr => pr.ProcessName == "calc1");
+
+            foreach (var process in calculatorProcesses)
             {
-                if (win.Title.Equals("Calculator"))
-                {
-                    win.Close();
-                    win.Dispose();
-                }
+                process.Kill();
             }
         }
 
@@ -49,8 +48,12 @@ namespace SpecFlowCalculator
 
         public static void Close()
         {
-            _application.Close();
-            _application.Dispose();
+            _application.Kill();
+        }
+
+        public static bool IsOpened()
+        {
+            return _application.Name.Equals("calc1");
         }
     }
 }

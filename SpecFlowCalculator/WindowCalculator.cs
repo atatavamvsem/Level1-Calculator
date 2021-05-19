@@ -7,33 +7,37 @@ using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
+using TestStack.White.UIItems.MenuItems;
 using TestStack.White.UIItems.WindowItems;
 
 namespace SpecFlowCalculator
 {
     class WindowCalculator
     {
-        private readonly Window _window = Calculator.GetWindow();
+        private static readonly Window Window = AppCalculator.GetWindow();
 
-        public void ClickNumber(int number)
+        public static void ClickNumber(int number)
         {
-            foreach (char ch in number.ToString())
+            foreach (var ch in number.ToString())
             {
-                Button btn1 = _window.Get<Button>(SearchCriteria.ByText(ch.ToString()));
-                btn1.Click();
+                Window.Get<Button>(SearchCriteria.ByText(ch.ToString())).Click();
             }
         }
 
-        public void ClickSymbol(string operand)
+        public static void ClickSymbol(string operand)
         {
-            Button btn1 = _window.Get<Button>(SearchCriteria.ByText(operand.ToString()));
-            btn1.Click();
+            Window.Get<Button>(SearchCriteria.ByText(operand.ToString())).Click();
         }
 
-        public int GetResult()
+        public static int GetResult()
         {
-            Label resultLabel = _window.Get<Label>(SearchCriteria.ByAutomationId("150"));
-            return int.Parse(resultLabel.Text);
+            return int.Parse(Window.Get<Label>(SearchCriteria.ByAutomationId("150")).Text);
+        }
+
+        public static void ChooseView(string view)
+        {
+            Window.Get<Menu>(SearchCriteria.ByText("View")).Click();
+            Window.Get<Menu>(SearchCriteria.ByText(view)).Click();
         }
     }
 }
