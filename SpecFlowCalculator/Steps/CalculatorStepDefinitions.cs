@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using System.Resources;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowCalculator.Steps
@@ -6,57 +7,53 @@ namespace SpecFlowCalculator.Steps
     [Binding]
     public sealed class CalculatorStepDefinitions
     {
+        private static readonly ResourceManager ConfData = Resources.ConfData.ResourceManager;
+        private static readonly WindowCalculator window = WindowCalculator.GetInstance(); 
+
         [Then("The result is (\\d+)")]
         public void ThenTheResultIs(int result)
         {
-            WindowCalculator.GetResult().Should().Be(result);
+            window.GetResult().Should().Be(result);
         }
 
         [When(@"I enter number (\d+)")]
         public void WhenIEnterNumber(int number)
         {
-            WindowCalculator.ClickNumber(number);
+            window.ClickNumber(number);
         }
-
 
         [When(@"I sum the number (\d+)")]
         public void WhenISumTheNumber(int number)
         {
-            WindowCalculator.ClickSymbol("Add");
-            WindowCalculator.ClickNumber(number);
-            WindowCalculator.ClickSymbol("Equals");
+            window.ClickOperandAdd();
+            window.ClickNumber(number);
+            window.ClickOperandEquals();
         }
 
         [When(@"I sum with number in memory")]
         public void WhenISumWithNumberInMemory()
         {
-            WindowCalculator.ClickSymbol("Add");
-            WindowCalculator.ClickSymbol("Memory recall");
-            WindowCalculator.ClickSymbol("Equals");
+            window.ClickOperandAdd();
+            window.ClickOperandMR();
+            window.ClickOperandEquals();
         }
 
-        [When(@"I enter operand (.*)")]
-        public void WhenIEnterOperand(string operand)
+        [When(@"I enter operand Memory add")]
+        public void WhenIEnterOperandMemoryAdd()
         {
-            WindowCalculator.ClickSymbol(operand);
+            window.ClickOperandMA();
         }
 
         [Given(@"I choose the view '(.*)'")]
         public void GivenIOpenTheCalculator(string view)
         {
-            WindowCalculator.ChooseView(view);
+            window.ChooseView(view);
         }
 
-        [Given(@"I open the calculator")]
-        public void GivenIOpenTheCalculator()
+        [Given(@"The calculator is opened")]
+        public void GivenTheCalculatorIsOpened()
         {
-            AppCalculator.GetCalculator();
-        }
-
-        [Then(@"The calculator is opened")]
-        public void ThenTheCalculatorIsOpened()
-        {
-            AppCalculator.IsOpened().Should().Be(true);
+            AppManager.GetWindowName().Should().Be(ConfData.GetString("WindowName"));
         }
 
     }

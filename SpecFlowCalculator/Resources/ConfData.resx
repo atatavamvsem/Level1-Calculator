@@ -120,4 +120,10 @@
   <data name="AppName" xml:space="preserve">
     <value>calc1.exe</value>
   </data>
+  <data name="ProcessName" xml:space="preserve">
+    <value>calc1</value>
+  </data>
+  <data name="WindowName" xml:space="preserve">
+    <value>Calculator</value>
+  </data>
 </root>

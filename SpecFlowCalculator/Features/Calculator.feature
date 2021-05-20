@@ -1,9 +1,10 @@
 ﻿Feature: Calculator
 
+Background: 
+Given The calculator is opened
+
 @mytag
 Scenario: Calculator test with various view
-	Given I open the calculator
-	Then The calculator is opened
 	Given I choose the view '<View>'
 	When I enter number 12
 	* I sum the number 999

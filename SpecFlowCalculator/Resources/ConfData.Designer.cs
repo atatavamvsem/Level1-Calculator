@@ -68,5 +68,23 @@ namespace SpecFlowCalculator.Resources {
                 return ResourceManager.GetString("AppName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to calc1.
+        /// </summary>
+        internal static string ProcessName {
+            get {
+                return ResourceManager.GetString("ProcessName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculator.
+        /// </summary>
+        internal static string WindowName {
+            get {
+                return ResourceManager.GetString("WindowName", resourceCulture);
+            }
+        }
     }
 }
