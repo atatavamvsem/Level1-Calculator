@@ -11,10 +11,13 @@ namespace SpecFlowCalculator
     internal class Digit : BaseElement
     {
         private static readonly ResourceManager ConfData = Resources.ConfData.ResourceManager;
+        private readonly string criteria;
 
-        private static Window Window => AppManager.GetWindow();
+        private static Window Window => AppManager.GetWindow(ConfData.GetString("WindowName"));
+
         public Digit(string criteria, string name) : base(criteria, name)
         {
+            this.criteria = criteria;
         }
 
         public void ClickDigit()

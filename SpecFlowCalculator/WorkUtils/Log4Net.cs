@@ -47,7 +47,6 @@ namespace SpecFlowCalculator
                 File = "FileLogger.log"
             };
 
-
             fileAppender.ActivateOptions();
             consoleAppender.ActivateOptions();
             BasicConfigurator.Configure(consoleAppender,fileAppender);

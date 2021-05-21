@@ -46,17 +46,16 @@ namespace SpecFlowCalculator.Steps
             window.ClickOperandMA();
         }
 
-        [Given(@"I choose the view '(.*)'")]
-        public void GivenIOpenTheCalculator(string view)
-        {
-            window.ChooseView(view);
-        }
-
         [Given(@"The calculator is opened")]
         public void GivenTheCalculatorIsOpened()
         {
-            Assert.AreEqual(ConfData.GetString("WindowName"), AppManager.GetWindowName(), "It's not calculator");
+            Assert.AreEqual(ConfData.GetString("WindowName"), AppManager.GetWindowName(ConfData.GetString("WindowName")), "It's not calculator");
         }
 
+        [Given(@"Calculator is opened in the '(.*)' style")]
+        public void GivenCalculatorIsOpenedInTheStyle(string view)
+        {
+            window.ChooseView(view);
+        }
     }
 }

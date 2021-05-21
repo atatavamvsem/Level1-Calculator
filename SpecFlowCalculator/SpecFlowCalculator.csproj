@@ -4,9 +4,6 @@
     <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="C:\Users\a2.gubko\.nuget\packages\nlog.config\4.7.10\contentFiles\any\any\NLog.config" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.12" />
