@@ -11,7 +11,6 @@ namespace SpecFlowCalculator
     public class AppManager
     {
         private static readonly ResourceManager ConfData = Resources.ConfData.ResourceManager;
-
         private static Application _application;
 
         public static void GetApplication()

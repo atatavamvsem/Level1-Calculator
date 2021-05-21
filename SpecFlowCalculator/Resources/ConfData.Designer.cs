@@ -70,6 +70,15 @@ namespace SpecFlowCalculator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 130.
+        /// </summary>
+        internal static string DeltaDigitId {
+            get {
+                return ResourceManager.GetString("DeltaDigitId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to calc1.
         /// </summary>
         internal static string ProcessName {

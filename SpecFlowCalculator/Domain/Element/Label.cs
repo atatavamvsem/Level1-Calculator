@@ -10,6 +10,8 @@ namespace SpecFlowCalculator
 {
     internal class Label : BaseElement
     {
+        private static Window Window => AppManager.GetWindow();
+
         public Label(string criteria, string name) : base(criteria, name)
         {
         }
@@ -17,6 +19,11 @@ namespace SpecFlowCalculator
         public string GetText()
         {
             return GetLabel().Text;
+        }
+
+        public TestStack.White.UIItems.Label GetLabel()
+        {
+            return Window.Get<TestStack.White.UIItems.Label>(SearchCriteria.ByAutomationId(this.criteria));
         }
     }
 }

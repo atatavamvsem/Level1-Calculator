@@ -4,18 +4,6 @@ namespace SpecFlowCalculator
 {
     class WindowCalculator
     {
-        private static WindowCalculator instance;
-
-        public static WindowCalculator GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new WindowCalculator();
-                return instance;
-            }
-            return instance;
-        }
-
         private Button Add => new Button("Add", "AddButton");
         private Button EqualsOperand => new Button("Equals", "EqualsButton");
         private Button Mr => new Button("Memory recall", "MRButton");
@@ -23,9 +11,9 @@ namespace SpecFlowCalculator
         private Menu Menu => new Menu("View", "ViewButton");
         private Label ResultLabel => new Label("150", "ResultLabel"); 
 
-        private Button GetDigit(string digit)
+        private Digit GetDigit(string digit)
         {
-            return new Button(digit, digit);
+            return new Digit(digit, digit);
         }
 
         private Menu GetElementMenu(string typeView)

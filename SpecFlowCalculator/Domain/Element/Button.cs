@@ -11,9 +11,6 @@ namespace SpecFlowCalculator
         public Button(string criteria, string name) : base(criteria, name)
         {
         }
-        public void ClickDigit()
-        {
-            GetNumber().Click();
-        }
+        
     }
 }

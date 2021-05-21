@@ -120,6 +120,9 @@
   <data name="AppName" xml:space="preserve">
     <value>calc1.exe</value>
   </data>
+  <data name="DeltaDigitId" xml:space="preserve">
+    <value>130</value>
+  </data>
   <data name="ProcessName" xml:space="preserve">
     <value>calc1</value>
   </data>

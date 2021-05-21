@@ -10,7 +10,6 @@ namespace SpecFlowCalculator.Hooks
         {
             AppManager.CloseAllInstants();
             AppManager.GetApplication();
-            BaseElement.GetWindow();
         }
 
         [AfterScenario]

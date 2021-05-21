@@ -8,7 +8,7 @@ namespace SpecFlowCalculator.Steps
     public sealed class CalculatorStepDefinitions
     {
         private static readonly ResourceManager ConfData = Resources.ConfData.ResourceManager;
-        private static readonly WindowCalculator window = WindowCalculator.GetInstance(); 
+        private static readonly WindowCalculator window = new WindowCalculator(); 
 
         [Then("The result is (\\d+)")]
         public void ThenTheResultIs(int result)
