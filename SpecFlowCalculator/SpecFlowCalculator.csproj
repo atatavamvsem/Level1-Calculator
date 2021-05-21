@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="log4net" Version="2.0.12" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.7.141" />
 

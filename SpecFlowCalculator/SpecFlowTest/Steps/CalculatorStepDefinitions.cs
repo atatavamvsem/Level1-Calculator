@@ -1,6 +1,4 @@
 ﻿using FluentAssertions;
-using log4net;
-using NUnit.Framework;
 using System.Resources;
 using TechTalk.SpecFlow;
 
@@ -10,12 +8,12 @@ namespace SpecFlowCalculator.Steps
     public sealed class CalculatorStepDefinitions
     {
         private static readonly ResourceManager ConfData = Resources.ConfData.ResourceManager;
-        private static readonly WindowCalculator window = new WindowCalculator();
+        private static readonly WindowCalculator window = new WindowCalculator(); 
 
         [Then("The result is (\\d+)")]
         public void ThenTheResultIs(int result)
         {
-            Assert.AreEqual(result, window.GetResult(), "Wrong result");
+            window.GetResult().Should().Be(result);
         }
 
         [When(@"I enter number (\d+)")]
@@ -55,7 +53,7 @@ namespace SpecFlowCalculator.Steps
         [Given(@"The calculator is opened")]
         public void GivenTheCalculatorIsOpened()
         {
-            Assert.AreEqual(ConfData.GetString("WindowName"), AppManager.GetWindowName(), "It's not calculator");
+            AppManager.GetWindowName().Should().Be(ConfData.GetString("WindowName"));
         }
 
     }

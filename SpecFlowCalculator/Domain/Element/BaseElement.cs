@@ -1,5 +1,4 @@
 ﻿
-using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,28 +12,25 @@ namespace SpecFlowCalculator
 {
     internal class BaseElement
     {
-        private readonly ILog logger = Log4Net.GetInstance();
         private static Window Window => AppManager.GetWindow();
-       
+        //Logger logger = LogManager.GetCurrentClassLogger();
         public readonly string criteria;
         private readonly string name;
 
         public BaseElement(string criteria, String name)
         {
-            
             this.criteria = criteria;
             this.name = name;
         }
 
         public UIItem GetElementByText()
         {
+            //logger.Trace("trace message");
             return (UIItem)Window.Get(SearchCriteria.ByText(this.criteria));
-            
         }
 
         public void Click()
         {
-            logger.Info("Was clicked " + this.name);
             GetElementByText().Click();
         }
     }
