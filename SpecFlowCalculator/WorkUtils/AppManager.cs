@@ -9,24 +9,23 @@ using TestStack.White.UIItems.WindowItems;
 
 namespace SpecFlowCalculator
 {
-    public class AppManager
+    public static class AppManager
     {
         private static readonly ResourceManager ConfData = Resources.ConfData.ResourceManager;
-        private static Application _application;
+        private static Application application;
         private static readonly ILog logger = Log4Net.GetInstance();
 
         public static void GetApplication()
         {
             try 
             {
-                _application = Application.Launch(ConfData.GetString("AppName"));
+                application = Application.Launch(ConfData.GetString("AppName"));
                 logger.Info("Calculator is running");
             }
             catch
             {
                 logger.Error("Calculator hasn't run");
             }
-            
         }
 
         public static void CloseAllInstants()
@@ -48,28 +47,27 @@ namespace SpecFlowCalculator
             }
         }
 
-        public static Window GetWindow()
+        public static Window GetWindow(string windowName)
         {
-            return _application.GetWindow(ConfData.GetString("WindowName"), InitializeOption.NoCache);
+            return application.GetWindow(windowName, InitializeOption.NoCache);
         }
 
         public static void Close()
         {
             try
             {
-                _application.Kill();
+                application.Kill();
                 logger.Info("Calculator is closed");
             }
             catch
             {
                 logger.Error("Calculator hasn't closed");
             }
-            
         }
 
-        public static string GetWindowName()
+        public static string GetWindowName(string windowName)
         {
-            return GetWindow().Title;
+            return GetWindow(windowName).Title;
         }
     }
 }

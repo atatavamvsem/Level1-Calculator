@@ -2,19 +2,16 @@
 
 namespace SpecFlowCalculator
 {
-    class WindowCalculator
+    public class WindowCalculator
     {
-        private Button Add => new Button("Add", "AddButton");
-        private Button EqualsOperand => new Button("Equals", "EqualsButton");
-        private Button Mr => new Button("Memory recall", "MRButton");
-        private Button Ma => new Button("Memory add", "MAButton");
-        private Menu Menu => new Menu("View", "ViewButton");
+        private Button AddButton => new Button("Add", "AddButton");
+        private Button EqualsButton => new Button("Equals", "EqualsButton");
+        private Button MrButton => new Button("Memory recall", "MRButton");
+        private Button MaButton => new Button("Memory add", "MAButton");
+        private Menu MenuButton => new Menu("View", "ViewButton");
         private Label ResultLabel => new Label("150", "ResultLabel"); 
 
-        private Digit GetDigit(string digit)
-        {
-            return new Digit(digit, digit);
-        }
+        private Digit GetDigit(string digit) => new Digit(digit, digit);
 
         private Menu GetElementMenu(string typeView)
         {
@@ -31,22 +28,22 @@ namespace SpecFlowCalculator
 
         public void ClickOperandAdd()
         {
-            Add.Click();
+            AddButton.Click();
         }
 
         public void ClickOperandEquals()
         {
-            EqualsOperand.Click();
+            EqualsButton.Click();
         }
 
         public void ClickOperandMR()
         {
-            Mr.Click();
+            MrButton.Click();
         }
 
         public void ClickOperandMA()
         {
-            Ma.Click();
+            MaButton.Click();
         }
 
         public int GetResult()
@@ -56,7 +53,7 @@ namespace SpecFlowCalculator
 
         public void ChooseView(string typeView)
         {
-            Menu.Click();
+            MenuButton.Click();
             GetElementMenu(typeView).Click();
         }
 

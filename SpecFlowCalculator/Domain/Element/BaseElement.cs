@@ -3,6 +3,7 @@ using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using TestStack.White.UIItems;
@@ -13,10 +14,11 @@ namespace SpecFlowCalculator
 {
     internal class BaseElement
     {
+        private static readonly ResourceManager ConfData = Resources.ConfData.ResourceManager;
         private readonly ILog logger = Log4Net.GetInstance();
-        private static Window Window => AppManager.GetWindow();
+        private static Window Window => AppManager.GetWindow(ConfData.GetString("WindowName"));
        
-        public readonly string criteria;
+        private readonly string criteria;
         private readonly string name;
 
         public BaseElement(string criteria, String name)
