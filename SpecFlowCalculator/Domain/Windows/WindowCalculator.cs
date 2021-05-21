@@ -8,7 +8,7 @@ namespace SpecFlowCalculator
         private Button EqualsButton => new Button("Equals", "EqualsButton");
         private Button MrButton => new Button("Memory recall", "MRButton");
         private Button MaButton => new Button("Memory add", "MAButton");
-        private Menu MenuButton => new Menu("View", "ViewButton");
+        private Menu ViewMenu => new Menu("View", "ViewButton");
         private Label ResultLabel => new Label("150", "ResultLabel"); 
 
         private Digit GetDigit(string digit) => new Digit(digit, digit);
@@ -53,7 +53,7 @@ namespace SpecFlowCalculator
 
         public void ChooseView(string typeView)
         {
-            MenuButton.Click();
+            ViewMenu.Click();
             GetElementMenu(typeView).Click();
         }
 
